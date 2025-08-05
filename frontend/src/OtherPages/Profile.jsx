@@ -8,6 +8,7 @@ const Profile = ({ onLogout }) => {
     const [balance, setBalance] = useState(user.balance);
     const [holdings, setHoldings] = useState([]);
     const [history, setHistory] = useState([]);
+    const [profitLoss, setProfitLoss] = useState(0.0);
     const [isSellOpen, setIsSellOpen] = useState(false);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
     const [sellQuantity, setSellQuantity] = useState("");
@@ -35,6 +36,7 @@ const Profile = ({ onLogout }) => {
             setBalance(data.user.balance);
             setHoldings(data.holdings);
             setHistory(data.history);
+            setProfitLoss(data.profitLoss);
         } catch (err) {
             console.error("Error fetching dashboard data:", err);
         }
@@ -122,6 +124,7 @@ const Profile = ({ onLogout }) => {
                 </div>
                 <div className="balance">
                     <h1>Balance: {typeof balance === "number" ? balance.toFixed(2) : "0.00"}$</h1>
+                    <h2 className={profitLoss>=0.0?"profit":"loss"}>{profitLoss>=0.0?"Profit: ":"Loss: "}{profitLoss.toFixed(2)}$</h2>
                 </div>
 
                 <div className="profileButtons">

@@ -148,6 +148,14 @@ nav>a:hover {
     justify-content: center;
 }
 
+.profit{
+    color:rgb(20, 156, 110);
+}
+
+.loss{
+    color: rgb(171, 66, 86);
+}
+
 .profileButtons>button {
     font-size: 3vh;
     border-radius: 1vh;
