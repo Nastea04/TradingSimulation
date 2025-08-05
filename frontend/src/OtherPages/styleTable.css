@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+table {
+    table-layout: fixed;
+    background-color: rgb(169, 206, 233);
+    color: rgb(2,21,38);
+    font-family: "AptosDisplay";
+    padding: 4vh;
+    margin: 10vh auto;
+    width: 90%;
+    border-collapse: collapse;
+    border-radius: 2vh;
+}
+
+thead, tbody {
+    font-size: 5vh;    
+    width: 100%;
+}
+
+tr {
+    border-bottom: 0.5vh solid rgb(2,21,38);
+}
+
+th{
+    text-align: left;
+    background-color: rgba(2, 21, 38, 0.1);
+}
+th, td {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+td{ 
+    padding-left: 3vh;
+}
+th.id{
+    text-align: center;
+}
+.id {
+    width: 5%;
+}
+.logo {
+    padding-left: 1vh;
+    padding-right: 1vh;
+    width: 10%;
+}
+.logo > img {
+    width: 50%;
+    height: auto;
+}
+.symbol {
+    width: 15%;
+}
+.name {
+    width: 25%;
+}
+th.name{
+    padding-left: 3vh;
+}
+th.price{
+    text-align: center;
+}
+.price{
+    width: 35%;
+}
+td.price {
+    text-align: right;
+    padding-right: 3vh;
+}
+.buy {
+    width: 15%;
+    text-align: center;
+}
+.buy>button{
+    font-size: 3vh;
+    border-radius: 1vh;
+    border: 0.6vh solid rgb(2, 21, 38);
+    padding: 1vh 2vh;
+    margin: 2vh;
+    background-color: rgb(169, 206, 233);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.buy>button:hover{
+    background-color: rgb(2, 21, 38);
+    color: rgb(169, 206, 233);
+}

@@ -1,0 +1,74 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: rgb(110, 172, 218);
+    font-family: "AptosDisplay"
+}
+
+.form-container {
+    background-color: rgb(2, 21, 38);
+    padding: 7vh 10vh;
+    border-radius: 2vh;
+    width: 50vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-container>h1 {
+    padding: 2vh 2vh 2vh 0vh;
+}
+
+.form-container>p {
+    padding: 0vh 1vh 1vh 0vh;
+    font-size: 3vh;
+}
+
+.form-container>input {
+    font-size: 3vh;
+    width: 90%;
+    padding: 2vh;
+    margin: 2vh 0vh;
+}
+
+.buttons{
+    display: flex;
+    gap: 2vh;
+    margin-top: 2vh;
+}
+
+.buttons>button {
+    border-radius: 1vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    padding: 1vh;
+}
+
+.confirm {
+    background: rgb(110, 172, 218);
+    flex: 1;
+}
+
+.form-container .confirm:hover {
+    background-color: rgb(71, 119, 156);
+}
+
+.form-container .cancel {
+    background-color: rgb(176, 215, 242);
+    flex: 1;
+}
+
+.form-container .cancel:hover {
+    background-color: rgb(110, 144, 169);
+}

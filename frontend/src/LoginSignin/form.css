@@ -1,0 +1,76 @@
+.inputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+}
+
+.inputForm {
+    background-color: rgb(196, 204, 211);
+    padding: 7vh 10vh;
+    border-radius: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    font-family: "AptosDisplay";
+    color: rgb(3, 52, 110);
+}
+
+.inputForm>h2 {
+    font-size: 10vh;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.inputForm>label {
+    font-size: 4vh;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
+}
+
+.inputForm>input {
+    padding: 2vh;
+    font-size: 3vh;
+    border: none;
+    border-radius: 1vh;
+    font-family: "AptosDisplay";
+}
+
+.inputForm>p {
+    margin: 1.5vh auto 0 auto;
+}
+
+.inputForm>button {
+    margin: 2vh auto 0 auto;
+    width: 50%;
+    padding: 1.5vh;
+    font-size: 4vh;
+    background-color: rgb(3, 52, 110);
+    border: none;
+    border-radius: 1vh;
+    color: whitesmoke;
+    font-family: "AptosDisplay";
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.inputForm>button:hover {
+    background-color: rgb(44, 118, 174);
+}
+
+.registerText {
+    margin-top: 3vh;
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.registerText>a {
+    color: rgb(3, 52, 110);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.registerText>a:hover {
+    color: rgb(44, 118, 174);
+}

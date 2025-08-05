@@ -1,0 +1,314 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "AptosDisplay";
+    src: url("../../public/fonts/aptos-display.ttf");
+}
+
+@font-face {
+    font-family: "Talero";
+    src: url("../../public/fonts/TALERO\ v1.otf");
+}
+
+::-webkit-scrollbar {
+    background: rgb(3, 30, 55);
+    width: 1.5vh;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(2, 21, 38);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(110, 172, 218);
+}
+
+body {
+    background-color: rgb(3, 30, 55);
+    padding-top: 8vh;
+    min-height: 80vh;
+}
+
+header {
+    top: 0;
+    left: 0;
+    background-color: rgb(2, 21, 38);
+    height: 8vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header>a {
+    font-family: "Talero";
+    padding-left: 2vh;
+    font-size: 3.5vh;
+    color: rgb(169, 206, 233);
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    justify-content: row;
+
+}
+
+nav>a {
+    margin-right: 2vh;
+    padding: 2vh;
+    border-left: 0.5vh solid rgb(3, 52, 110);
+    border-right: 0.5vh solid rgb(3, 52, 110);
+    color: rgb(169, 206, 233);
+    font-family: "AptosDisplay";
+    font-size: 3vh;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+}
+
+nav>a:hover {
+    background-color: rgb(3, 52, 110);
+    cursor: pointer;
+    color: white;
+}
+
+.homeQuote {
+    background: linear-gradient(303deg, rgb(110, 172, 218) 0%, rgb(217, 217, 217) 100%);
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.homeQuote>h1 {
+    color: rgb(2, 21, 38);
+    font-size: 6vw;
+    font-family: "AptosDisplay";
+}
+
+.allProfileInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh;
+    color: rgb(2, 21, 38);
+    font-family: "AptosDisplay";
+}
+
+.profile {
+    flex: 1;
+    background-color: rgb(169, 206, 233);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    border-radius: 1.5vh;
+    width: 90vw;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4vh;
+    justify-content: center;
+    width: 50vh;
+}
+
+.profileInfo>h1 {
+    font-size: 7.5vh;
+}
+
+.profileInfo>p {
+    font-size: 4vh;
+}
+
+.balance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 4vh;
+    padding: 4vh;
+    flex:1;
+    min-width: auto;
+}
+
+.profileButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profileButtons>button {
+    font-size: 3vh;
+    border-radius: 1vh;
+    border: 0.6vh solid rgb(2, 21, 38);
+    padding: 1vh 2vh;
+    margin: 2vh;
+    background-color: rgb(169, 206, 233);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.profileButtons>button:hover {
+    background-color: rgb(2, 21, 38);
+    color: rgb(169, 206, 233);
+}
+
+.profileInfo2 {
+    display: flex;
+    gap: 4vh;
+    margin-top: 4vh;
+    margin-left: 2vw;
+    width: 92vw;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.boxLists {
+    flex: 1;
+}
+
+.infoLists,
+.headerLists {
+    background-color: rgb(169, 206, 233);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 2vh;
+}
+
+.infoLists {
+    min-height: 50vh;
+    max-height: 80vh;
+    border-radius: 0vh 0vh 1.5vh 1.5vh;
+    font-size: 3vh;
+    align-items: top;
+}
+
+.headerLists {
+    border-radius: 1.5vh 1.5vh 0vh 0vh;
+    border-bottom: 0.5vh solid rgb(2, 21, 38);
+    align-items: center;
+}
+
+
+.infoLists::-webkit-scrollbar {
+    background-color: rgb(169, 206, 233);
+    width: 1.5vh;
+}
+
+.infoLists::-webkit-scrollbar-thumb {
+    background-color: rgb(3, 52, 110);
+    border-radius: 1.5vh;
+}
+
+.infoLists>table {
+    margin-top: 0;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-family: "AptosDisplay";
+    border-bottom: 0.5vh solid rgb(110, 172, 218);
+    color: rgb(2, 21, 38);
+}
+.infoLists th {
+    background-color: rgba(2, 21, 38, 0.1);
+    font-weight: bold;
+    font-size: 3vh;
+    text-align: left;
+    border-bottom: 0.5vh solid rgb(110, 172, 218);
+}
+.infoLists td{
+    border-bottom: 0.5vh solid rgb(110, 172, 218);
+    padding: 0.5vh;
+    margin: 0vh;
+    font-size: 4vh;
+}
+
+td.time{
+    font-size: 2vh;
+}
+
+td.symbol{
+    font-size: 2.5vh;
+}
+.symbol{
+    padding-left: 1vh;
+    width:30%;
+}
+th.quantity{
+    text-align: right;
+}
+td.quantity{
+    padding-right: 4vh;
+}
+.quantity{
+    text-align: right;
+    padding-right: 4vh;
+    width:30%;
+}
+td.cryptoName{
+    padding-left: 5vh;
+}
+.cryptoName{
+    padding-left: 5vh;
+    width:25%;
+}
+.sell{
+    width: 15%;
+    padding-right: 2vh;
+}
+
+
+.sell>button{
+    font-size: 2.5vh;
+    border-radius: 1vh;
+    border: 0.6vh solid rgb(2, 21, 38);
+    padding: 1vh 2vh;
+    margin: 2vh;
+    background-color: rgb(169, 206, 233);
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sell>button:hover{
+    background-color: rgb(2, 21, 38);
+    color: rgb(169, 206, 233);
+}
+
+@media (max-width: 768px) {
+    .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .balance {
+        min-width: auto;
+        flex: none;
+        margin-top: 2vh;
+    }
+
+    .profileButtons {
+        flex-direction: row;
+        margin-top: 2vh;
+    }
+
+    .profileButtons > button {
+        margin: 1vh;
+    }
+
+    .profileInfo2{
+        flex-direction: column;
+    }
+}
