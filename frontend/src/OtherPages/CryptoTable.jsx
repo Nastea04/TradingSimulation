@@ -28,40 +28,38 @@ const CryptoTable = () => {
         setTotalBuy(0);
     };
 
-    const fetchDashboardData = () => {
-        const currentUser = JSON.parse(localStorage.getItem("user"));
+    const fetchCryptos = async () => {
+        try {
+            const res = await fetch("http://localhost:8080/api/cryptos");
+            if (!res.ok) throw new Error("Failed to fetch cryptos");
+            const data = await res.json();
+            setCryptos(Array.isArray(data) ? data : []);
+        } catch (err) {
+            console.error("Error fetching cryptos:", err);
+        }
+    };
 
-        if (currentUser?.id) {
-            fetch(`http://localhost:8080/api/user/dashboard/${currentUser.id}`)
-                .then(res => {
-                    if (!res.ok) throw new Error("Failed to fetch dashboard data");
-                    return res.json();
-                })
-                .then(data => {
-                    setUser(data.user);
-                    setBalance(data.user.balance);
-                    setCryptos(Array.isArray(data.cryptos) ? data.cryptos : []);
-                })
-                .catch(err => console.error("Error fetching dashboard:", err));
-        } else {
-            fetch("http://localhost:8080/api/cryptos")
-                .then(res => {
-                    if (!res.ok) throw new Error("Failed to fetch cryptos");
-                    return res.json();
-                })
-                .then(data => {
-                    setCryptos(Array.isArray(data) ? data : []);
-                    setBalance(0);
-                    setUser(null);
-                })
-                .catch(err => console.error("Error fetching cryptos:", err));
+    const fetchUserData = async (userId) => {
+        try {
+            const res = await fetch(`http://localhost:8080/api/user/get/${userId}`);
+            if (!res.ok) throw new Error("Failed to fetch user");
+            const data = await res.json();
+            setUser(data);
+            setBalance(data.balance);
+            localStorage.setItem("user", JSON.stringify(data));
+        } catch (err) {
+            console.error("Error fetching user data:", err);
         }
     };
 
 
 
     useEffect(() => {
-        fetchDashboardData();
+        fetchCryptos();
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser?.id) {
+            fetchUserData(storedUser.id);
+        }
     }, []);
 
     const makeBuy = () => {
@@ -90,7 +88,7 @@ const CryptoTable = () => {
             })
             .then((msg) => {
                 alert(msg);
-                fetchDashboardData(); 
+                fetchUserData();
                 closeBuyForm();
             })
             .catch((err) => {

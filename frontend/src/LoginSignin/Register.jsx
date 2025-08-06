@@ -12,7 +12,7 @@ const Register = (props) => {
         e.preventDefault();
         const name = fname + " " + lname;
         try {
-            const response = await fetch("http://localhost:8080/api/users/register",
+            const response = await fetch("http://localhost:8080/api/user/register",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

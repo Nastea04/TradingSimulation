@@ -27,18 +27,26 @@ const Profile = ({ onLogout }) => {
         setTotalSell(0);
     }
 
-    const fetchDashboard = async (userId) => {
+    const fetchData = async (userId) => {
         try {
-            const res = await fetch(`http://localhost:8080/api/user/dashboard/${userId}`);
-            if (!res.ok) throw new Error(await res.text());
+            const userRes = await fetch(`http://localhost:8080/api/user/get/${userId}`);
+            const userData = await userRes.json();
+            setUser(userData);
+            setBalance(userData.balance);
 
-            const data = await res.json();
-            setBalance(data.user.balance);
-            setHoldings(data.holdings);
-            setHistory(data.history);
-            setProfitLoss(data.profitLoss);
+            const holdingsRes = await fetch(`http://localhost:8080/api/user/holdings/${userId}`);
+            const holdingsData = await holdingsRes.json();
+            setHoldings(holdingsData);
+
+            const historyRes = await fetch(`http://localhost:8080/api/user/history/${userId}`);
+            const historyData = await historyRes.json();
+            setHistory(historyData);
+
+            const plRes = await fetch(`http://localhost:8080/api/user/profitloss/${userId}`, { method: "PUT" });
+            const plData = await plRes.json();
+            setProfitLoss(plData);
         } catch (err) {
-            console.error("Error fetching dashboard data:", err);
+            console.error("Error loading profile:", err);
         }
     };
 
@@ -46,7 +54,7 @@ const Profile = ({ onLogout }) => {
 
     useEffect(() => {
         if (!user?.id) return;
-        fetchDashboard(user.id);
+        fetchData(user.id);
     }, []);
 
 
@@ -56,7 +64,7 @@ const Profile = ({ onLogout }) => {
         if (!window.confirm("Are you sure you want to reset your profile?")) return;
 
         try {
-            const res = await fetch(`http://localhost:8080/api/users/reset/${user.id}`, {
+            const res = await fetch(`http://localhost:8080/api/user/reset/${user.id}`, {
                 method: "PUT"
             });
 
@@ -65,7 +73,7 @@ const Profile = ({ onLogout }) => {
             }
 
             alert("Profile reset successfully!");
-            fetchDashboard(user.id);
+            fetchData(user.id);
         } catch (err) {
             console.log(`Error resetting profile: ${err.message}`);
             alert("Error! Try again later.");
@@ -77,7 +85,7 @@ const Profile = ({ onLogout }) => {
 
     const makeSell = () => {
         const qty = parseFloat(sellQuantity);
- 
+
         if (isNaN(qty) || qty <= 0) {
             alert("Enter quantity");
             return;
@@ -103,7 +111,7 @@ const Profile = ({ onLogout }) => {
             })
             .then((msg) => {
                 alert(msg);
-                fetchDashboard(user.id);
+                fetchData(user.id);
                 closeSellForm();
             })
             .catch((err) => {
@@ -124,7 +132,7 @@ const Profile = ({ onLogout }) => {
                 </div>
                 <div className="balance">
                     <h1>Balance: {typeof balance === "number" ? balance.toFixed(2) : "0.00"}$</h1>
-                    <h2 className={profitLoss>=0.0?"profit":"loss"}>{profitLoss>=0.0?"Profit: ":"Loss: "}{profitLoss.toFixed(2)}$</h2>
+                    <h2 className={profitLoss >= 0.0 ? "profit" : "loss"}>{profitLoss >= 0.0 ? "Profit: " : "Loss: "}{profitLoss.toFixed(2)}$</h2>
                 </div>
 
                 <div className="profileButtons">

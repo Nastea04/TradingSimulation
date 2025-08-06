@@ -1,14 +1,12 @@
 package com.trading.simulation.controllers;
 
 import com.trading.simulation.other.User;
-import com.trading.simulation.services.Trading;
+import com.trading.simulation.services.TradingService;
+import com.trading.simulation.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/api/trade")
@@ -16,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 public class TradeController {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private TradingService tradingService;
 
     @Autowired
-    private Trading trading;
+    private UserService userService;
 
     @PostMapping("/buy/{userId}")
     public ResponseEntity<String> buyCrypto(
@@ -30,17 +28,14 @@ public class TradeController {
             @RequestParam String cryptoName) {
 
         try {
-            User user = jdbcTemplate.queryForObject(
-                    "SELECT * FROM users WHERE id = ?",
-                    new BeanPropertyRowMapper<>(User.class),
-                    userId);
+            User user = userService.getUserById(userId);
 
-            if (!trading.canBuy(user, quantity, price)) {
+            if (!tradingService.canBuy(user, quantity, price)) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body("Not enough balance!");
             }
 
-            trading.buy(user, cryptoSymbol, quantity, price, cryptoName);
+            tradingService.buy(user, cryptoSymbol, quantity, price, cryptoName);
             return ResponseEntity.ok("Bought successfully");
 
         } catch (IllegalArgumentException e) {
@@ -59,13 +54,11 @@ public class TradeController {
             @RequestParam double quantity,
             @RequestParam double price,
             @RequestParam String cryptoName) {
-        try {
-            User user = jdbcTemplate.queryForObject(
-                    "SELECT * FROM users WHERE id = ?",
-                    new BeanPropertyRowMapper<>(User.class),
-                    userId);
 
-            if (trading.sell(user, cryptoSymbol, quantity, price, cryptoName)) {
+        try {
+            User user = userService.getUserById(userId);
+
+            if (tradingService.sell(user, cryptoSymbol, quantity, price, cryptoName)) {
                 return ResponseEntity.ok("Sold successfully");
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -76,7 +69,8 @@ public class TradeController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Server error: " + e.getMessage());
         }
     }
 }
