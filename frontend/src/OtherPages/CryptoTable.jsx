@@ -88,7 +88,7 @@ const CryptoTable = () => {
             })
             .then((msg) => {
                 alert(msg);
-                fetchUserData();
+                fetchUserData(user.id);
                 closeBuyForm();
             })
             .catch((err) => {
